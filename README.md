@@ -52,15 +52,21 @@ ng serve --open --port 4300
 
 1. Какую команду/команды использовали для создания приложения?
 
-Ответ:
+Ответ: 
+```bash
+ng new task-board --style=scss --routing=true --ssr=false --dry-run
+```
+```bash
+ng new task-board --style=scss --routing=true --ssr=false
+```
 
 3. Какая версия пакетов ангуляра в сгенерированном package.json?
 
-Ответ:
+Ответ: ^21.2.0
 
 4. Какой установился пакет для тестирования?
 
-Ответ:
+Ответ: vitest
 
 ### Шаг 3. Сгенерировать код — только через CLI
 
