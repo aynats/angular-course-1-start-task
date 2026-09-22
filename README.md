@@ -60,11 +60,11 @@ ng new task-board --style=scss --routing=true --ssr=false --dry-run
 ng new task-board --style=scss --routing=true --ssr=false
 ```
 
-3. Какая версия пакетов ангуляра в сгенерированном package.json?
+2. Какая версия пакетов ангуляра в сгенерированном package.json?
 
 Ответ: ^21.2.0
 
-4. Какой установился пакет для тестирования?
+3. Какой установился пакет для тестирования?
 
 Ответ: vitest
 
@@ -75,7 +75,7 @@ ng new task-board --style=scss --routing=true --ssr=false
 | Что           | Требование                                                                                                               |
 | ------------- |--------------------------------------------------------------------------------------------------------------------------|
 | `Task`        | Интерфейс: `id: number`, `title: string`, `done: boolean`, `createdAt: Date`. Название файла должно быть `task.model.ts` |
-| `TaskService` | Сервис с массивом задач в `signal` (`readonly tasks: Signal<Task[]>;`) и методом переключения `toggle`                   |
+| `TaskService` | Сервис с массивом задач в `signal` (`readonly tasks = signal<Task[]>([]);`) и методом переключения `toggle`                   |
 | `TaskList`    | Компонент, стратегия обнаружения изменений — **OnPush**                                                                  |
 | `TaskItem`    | Компонент, **OnPush**, с инлайновым шаблоном и инлайновыми стилями                                                       |
 | `TimeAgo`     | Пайп, превращающий `Date` в строку «5 минут назад»                                                                       |
@@ -107,7 +107,7 @@ TimeAgo:
 - `TaskService` хранит список задач (3–5 штук, захардкоженных);
 - `TaskList` получает список из сервиса через `readonly taskService = inject(TaskService); readonly tasks = this.taskService.tasks;` и рендерит задачи (`TaskItem`) в шаблоне
   через блок `@for (task of tasks())` с `track` по `task.id`;
-- `TaskItem` принимает задачу через `readonly task = input.required<Task>();`, выводит в шаблоне свой title для идентификации и эмитит событие через `readonly toggled = output<boolean>();`
+- `TaskItem` принимает задачу через `readonly task = input.required<Task>();`, выводит в шаблоне свой title для идентификации и эмитит событие через `readonly toggled = output<number>();`
   при клике по чекбоксу `<input type="checkbox" [checked]="task().done" (change)="toggled.emit(task().id)">`;
 - `TaskList` ловит событие `done` у `TaskItem` и отдает сервису `TaskService` `<app-task-item [task]="task" (toggled)="taskService.toggle($event)" />`
 - `TimeAgo` применяется к `createdAt` в шаблоне `TaskItem`: `<span class="date">{{task.createdAt | timeAgo}}</span>`;
