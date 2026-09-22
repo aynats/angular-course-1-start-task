@@ -91,14 +91,29 @@ ng new task-board --style=scss --routing=true --ssr=false
 Выпишите команды, которые использовали для генерации каждого пункта:
 
 Task:
+```bash 
+ng generate interface task.model
+```
 
 TaskService:
+```bash 
+ng generate service task-service
+```
 
 TaskList:
+```bash 
+ng g component task-list --change-detection=OnPush
+```
 
 TaskItem:
+```bash 
+ng g c task-item --change-detection=OnPush --inline-template --inline-style
+```
 
 TimeAgo:
+```bash 
+ng g pipe time-ago
+```
 
 ### Шаг 4. Связать
 
